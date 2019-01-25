@@ -28,7 +28,7 @@ public class Axe extends Item{
 					
 		moveSpeed = 0.4;
 		fallSpeed = 0.15;
-		maxFallSpeed = 4.0;
+		maxFallSpeed = 4.1;
 		jumpStart = -5;
 		
 		width = 15;
