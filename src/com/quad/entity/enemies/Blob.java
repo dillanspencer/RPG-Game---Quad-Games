@@ -64,8 +64,8 @@ public class Blob extends Enemy{
 	
 	private void getNextPosition() {
 		if(knockback) {
-			dy += fallSpeed * 2;
-			if(!falling) knockback = false;
+			dy -= fallSpeed * 2;
+			if(dy < -1) knockback = false;
 			return;
 		}
 		
@@ -91,8 +91,6 @@ public class Blob extends Enemy{
 			return;
 		}
 		
-		
-		System.out.println(falling);
 		// check if done flinching
 		if(flinching) {
 			flinchCount++;

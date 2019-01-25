@@ -290,7 +290,7 @@ public class LevelOne extends State{
 		if(player.isDead() || player.getHealth() <= 0) eventFinish = true;
 		
 		//waterfall
-
+		fall.update(gc, dt);
 		
 		//teleport
 		port.update(gc, dt);

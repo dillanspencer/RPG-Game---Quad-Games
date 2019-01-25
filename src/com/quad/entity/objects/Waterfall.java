@@ -37,7 +37,7 @@ public class Waterfall extends GameObject{
 			
 			animation = new Animation();
 			animation.setFrames(sprites);
-			animation.setDelay(15);
+			animation.setDelay(9);
 			
 		}
 		catch(Exception e) {
