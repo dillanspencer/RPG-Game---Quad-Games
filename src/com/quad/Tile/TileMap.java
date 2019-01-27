@@ -192,11 +192,11 @@ public class TileMap {
 	public void setPosition(double x, double y) {
 		
 		if(y <= 0 && y > (-height + gc.getHeight())) {
-			Tween.to(this, PlayerAccessor.POSITION_Y, 0.09f).target((float)y, (float)this.y).start(tween);
+			Tween.to(this, PlayerAccessor.POSITION_Y, 0.12f).target((float)y, (float)this.y).start(tween);
 			}
 			else y = 0;
 			if(x < 0 && x > (-width + gc.getWidth())) {
-				Tween.to(this, PlayerAccessor.POSITION_X, 0.09f).target((float)x, (float)this.x).start(tween);
+				Tween.to(this, PlayerAccessor.POSITION_X, 0.12f).target((float)x, (float)this.x).start(tween);
 			}
 			else x = 0;
 			colOffset = (int)-this.x / tileSize;

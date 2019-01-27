@@ -205,8 +205,8 @@ public class LevelOne extends State{
 		//use mouse mode---------------------------------------------
 		if(mouseMode)
 		tm.setPosition(
-				Settings.WIDTH / 2 - (gc.getInput().getMouseX() - tm.getx()),
-				Settings.HEIGHT / 2 - (gc.getInput().getMouseY() - tm.gety())
+				Settings.WIDTH/2 - ((gc.getInput().getMouseX()) - tm.getx()),
+				Settings.HEIGHT/2 - (gc.getInput().getMouseY() - tm.gety())
 			);
 		else{
 			tm.setPosition(
