@@ -51,7 +51,7 @@ public class Gunner extends GamePlayer{
 		super(tm);
 		
 		//bullets
-		bulletDelay = 10;
+		bulletDelay = 20;
 		bullets = new ArrayList<Bullet>();
 		
 		// load sprites
@@ -396,10 +396,10 @@ public class Gunner extends GamePlayer{
 			animation.setNumFrames(4);
 		}
 		// Bullet
-		if(firing) {
+		if(firing && animation.getFrame() >= 1) {
 			if(bulletCount >= bulletDelay){
 				Bullet fb = new Bullet(tileMap, facingRight);
-				fb.setPosition(x + 20, y);
+				fb.setPosition(x, y);
 				bullets.add(fb);
 				System.out.println(bullets.size());
 			}
@@ -434,8 +434,8 @@ public class Gunner extends GamePlayer{
 		}
 	}
 	
-	public void render(Renderer r, GameContainer gc) {
-		
+	public void render(GameContainer gc, Renderer r) {
+		super.render(gc, r);
 		// draw emote
 //		if(emote == CONFUSED) {
 //			r.drawImage(confused, (int)(x + xmap -cwidth / 2), (int)(y + ymap));
@@ -445,7 +445,7 @@ public class Gunner extends GamePlayer{
 //		}
 		// draw bullets
 		for(int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).renderComponents(gc, r);
+			bullets.get(i).draw(gc, r);
 		}
 					
 		
@@ -453,7 +453,6 @@ public class Gunner extends GamePlayer{
 		if(flinching && !knockback) {
 			if(flinchCount % 10 < 5) return;
 		}
-		super.render(gc, r);
 	}
 
 }

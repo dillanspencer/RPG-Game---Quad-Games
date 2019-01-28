@@ -386,6 +386,7 @@ public class LevelOne extends State{
 		
 		if(step[0] == 100){
 			player.setPosition(spawnX, spawnY);
+			tm.setPosition(spawnX, spawnY);
 			player.setMovement(true);
 			player.setEmote(Player.NONE);
 			player.setDead(false);

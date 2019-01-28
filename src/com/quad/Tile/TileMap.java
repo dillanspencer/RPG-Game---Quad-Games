@@ -12,6 +12,7 @@ import com.quad.entity.PlayerAccessor;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+import aurelienribon.tweenengine.equations.Bounce;
 
 
 public class TileMap {
@@ -191,12 +192,12 @@ public class TileMap {
 	
 	public void setPosition(double x, double y) {
 		
-		if(y <= 0 && y > (-height + gc.getHeight())) {
-			Tween.to(this, PlayerAccessor.POSITION_Y, 0.12f).target((float)y, (float)this.y).start(tween);
+		if(y <= 0) {
+			Tween.to(this, PlayerAccessor.POSITION_Y, 0.32f).target((float)y, (float)this.y).ease(Bounce.OUT).start(tween);
 			}
 			else y = 0;
-			if(x < 0 && x > (-width + gc.getWidth())) {
-				Tween.to(this, PlayerAccessor.POSITION_X, 0.12f).target((float)x, (float)this.x).start(tween);
+			if(x < 0) {
+				Tween.to(this, PlayerAccessor.POSITION_X, 0.32f).target((float)x, (float)this.x).ease(Bounce.OUT).start(tween);
 			}
 			else x = 0;
 			colOffset = (int)-this.x / tileSize;

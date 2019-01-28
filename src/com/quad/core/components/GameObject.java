@@ -7,6 +7,7 @@ import com.quad.Tile.Tile;
 import com.quad.Tile.TileMap;
 import com.quad.core.GameContainer;
 import com.quad.core.Renderer;
+import com.quad.core.fx.ShadowType;
 import com.quad.entity.Animation;
 
 

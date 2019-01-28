@@ -24,7 +24,7 @@ public class Bullet extends GameObject{
 		else dx = -moveSpeed;
 		
 		width = 20;
-		height = 12;
+		height = 17;
 		cwidth = 14;
 		cheight = 14;
 		
@@ -32,7 +32,7 @@ public class Bullet extends GameObject{
 		try {
 			
 			Image spritesheet = new Image(
-					"/player/fireball.gif"
+					"/player/bullet.gif"
 				);
 			
 			sprites = new Image[4];
@@ -68,7 +68,7 @@ public class Bullet extends GameObject{
 		if(hit) return;
 		hit = true;
 		animation.setFrames(hitSprites);
-		animation.setDelay(4);
+		animation.setDelay(2);
 		dx = 0;
 	}
 	
