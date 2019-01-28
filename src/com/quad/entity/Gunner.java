@@ -6,11 +6,13 @@ import com.quad.Tile.TileMap;
 import com.quad.core.GameContainer;
 import com.quad.core.Renderer;
 import com.quad.core.fx.Image;
+import com.quad.entity.attack.Bullet;
 
 public class Gunner extends GamePlayer{
 	
 	// references
 	private ArrayList<Enemy> enemies;
+	private ArrayList<Bullet> bullets;
 	
 	// animations
 	private ArrayList<Image[]> sprites;
@@ -27,6 +29,10 @@ public class Gunner extends GamePlayer{
 		10, 5, -1, -1, 5
 	};
 	
+	//bullets
+	private int bulletDelay;
+	private int bulletCount;
+	
 	// animation actions
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
@@ -39,10 +45,14 @@ public class Gunner extends GamePlayer{
 	private static final int KNOCKBACK = 2;
 	private static final int DEAD = 10;
 	private static final int TELEPORTING = 10;
-	private static final int FIREBALL = 11;
+	private static final int BULLET = 11;
 
 	public Gunner(TileMap tm) {
 		super(tm);
+		
+		//bullets
+		bulletDelay = 10;
+		bullets = new ArrayList<Bullet>();
 		
 		// load sprites
 		try {
@@ -181,6 +191,11 @@ public class Gunner extends GamePlayer{
 		super.update(gc, dt);
 		
 		time++;
+		bulletCount++;
+		
+		//update bullets
+		//check if can fire
+		if(bulletCount < bulletDelay ) firing = false;
 		
 		inventory.update(gc, dt);
 		if(inventory.isActive()) return;
@@ -203,6 +218,10 @@ public class Gunner extends GamePlayer{
 			}
 		}
 		
+		if(currentAction == BULLET) {
+			if(animation.hasPlayedOnce()) firing = false;
+		}
+		
 		//check tile updating ----------------------
 		
 		//spikes
@@ -221,13 +240,14 @@ public class Gunner extends GamePlayer{
 		
 		// check attack finished
 		if(currentAction == ATTACKING ||
-			currentAction == UPATTACKING || currentAction == FIREBALL) {
+			currentAction == UPATTACKING || currentAction == BULLET) {
 			if(animation.hasPlayedOnce()) {
 				attacking = false;
 				upattacking = false;
 				firing = false;
 			}
 		}
+		
 		if(currentAction == CHARGING) {
 			if(animation.hasPlayed(5)) {
 				charging = false;
@@ -250,6 +270,14 @@ public class Gunner extends GamePlayer{
 				}
 			}
 			
+
+			for(int j = 0; j < bullets.size(); j++) {
+				if(bullets.get(j).intersects(e)) {
+					e.hit(1);
+					bullets.get(j).setHit();
+					break;
+				}
+			}
 			
 			// check upward attack
 			if(currentAction == UPATTACKING &&
@@ -328,6 +356,13 @@ public class Gunner extends GamePlayer{
 				}}
 			}
 		}
+		else if(firing){
+			if(currentAction != BULLET) {
+				currentAction = BULLET;
+				animation.setFrames(sprites.get(ATTACKING));
+				animation.setDelay(4);
+			}
+		}
 		
 		else if(charging) {
 			if(currentAction != CHARGING) {
@@ -360,6 +395,25 @@ public class Gunner extends GamePlayer{
 			setAnimation(IDLE);
 			animation.setNumFrames(4);
 		}
+		// Bullet
+		if(firing) {
+			if(bulletCount >= bulletDelay){
+				Bullet fb = new Bullet(tileMap, facingRight);
+				fb.setPosition(x + 20, y);
+				bullets.add(fb);
+				System.out.println(bullets.size());
+			}
+			bulletCount = 0;
+		}
+		
+		// update bullets
+		for(int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).update(gc, dt);
+			if(bullets.get(i).shouldRemove()) {
+				bullets.remove(i);
+				i--;
+			}
+		}
 		
 		//check fall damage
 		if(dy >= 8.0) fallDamage = true;
@@ -373,7 +427,6 @@ public class Gunner extends GamePlayer{
 		}
 		
 		animation.update();
-		
 		// set direction
 		if(!attacking && !upattacking && !charging && !knockback) {
 			if(right) facingRight = true;
@@ -382,7 +435,6 @@ public class Gunner extends GamePlayer{
 	}
 	
 	public void render(Renderer r, GameContainer gc) {
-		super.render(gc, r);
 		
 		// draw emote
 //		if(emote == CONFUSED) {
@@ -391,12 +443,17 @@ public class Gunner extends GamePlayer{
 //		else if(emote == SURPRISED) {
 //			r.drawImage(surprised, (int)(x + xmap -cwidth / 2), (int)(y + ymap - 30));
 //		}
-		
+		// draw bullets
+		for(int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).renderComponents(gc, r);
+		}
+					
 		
 		// flinch
 		if(flinching && !knockback) {
 			if(flinchCount % 10 < 5) return;
 		}
+		super.render(gc, r);
 	}
 
 }

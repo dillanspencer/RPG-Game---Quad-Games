@@ -365,6 +365,9 @@ public class LevelOne extends State{
 			player.setAttacking();
 			//player.setAction(5);
 		}
+		if(gc.getInput().isKeyPressed(KeyEvent.VK_X)) {
+			player.setFiring();
+		}
 		
 		//exit
 		if(gc.getInput().isKeyPressed(KeyEvent.VK_ESCAPE)) System.exit(0);

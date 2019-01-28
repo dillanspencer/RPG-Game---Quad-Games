@@ -12,9 +12,6 @@ import com.quad.inventory.Inventory;
 
 public class GamePlayer extends GameObject{
 	
-	// references
-	private ArrayList<Enemy> enemies;
-	
 	// player stuff
 	protected int lives;
 	protected int health;
