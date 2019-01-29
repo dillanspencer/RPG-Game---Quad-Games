@@ -209,7 +209,6 @@ public class GamePlayer extends GameObject{
 	
 	public void render(GameContainer gc, Renderer r) {
 		super.renderComponents(gc, r);
-		
 	}
 	
 	public void postRender(GameContainer gc, Renderer r){

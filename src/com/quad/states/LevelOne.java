@@ -365,7 +365,7 @@ public class LevelOne extends State{
 			player.setAttacking();
 			//player.setAction(5);
 		}
-		if(gc.getInput().isKeyPressed(KeyEvent.VK_X)) {
+		if(gc.getInput().isKey(KeyEvent.VK_X)) {
 			player.setFiring();
 		}
 		
@@ -386,7 +386,6 @@ public class LevelOne extends State{
 		
 		if(step[0] == 100){
 			player.setPosition(spawnX, spawnY);
-			tm.setPosition(spawnX, spawnY);
 			player.setMovement(true);
 			player.setEmote(Player.NONE);
 			player.setDead(false);

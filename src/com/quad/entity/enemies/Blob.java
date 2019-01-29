@@ -28,7 +28,7 @@ public class Blob extends Enemy{
 		cwidth = 12;
 		cheight = 12;
 		
-		damage = 2;
+		damage = 1;
 		moveSpeed = 0.8;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
@@ -94,7 +94,7 @@ public class Blob extends Enemy{
 		// check if done flinching
 		if(flinching) {
 			flinchCount++;
-			if(flinchCount > 60) {
+			if(flinchCount > 20) {
 				flinching = false;
 			}
 		}

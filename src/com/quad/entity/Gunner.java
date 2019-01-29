@@ -51,7 +51,7 @@ public class Gunner extends GamePlayer{
 		super(tm);
 		
 		//bullets
-		bulletDelay = 20;
+		bulletDelay = 10;
 		bullets = new ArrayList<Bullet>();
 		
 		// load sprites
@@ -270,10 +270,10 @@ public class Gunner extends GamePlayer{
 				}
 			}
 			
-
+			//enemy attack with bullets
 			for(int j = 0; j < bullets.size(); j++) {
 				if(bullets.get(j).intersects(e)) {
-					e.hit(1);
+					e.hit(bullets.get(j).getDamage());
 					bullets.get(j).setHit();
 					break;
 				}
@@ -435,24 +435,18 @@ public class Gunner extends GamePlayer{
 	}
 	
 	public void render(GameContainer gc, Renderer r) {
-		super.render(gc, r);
-		// draw emote
-//		if(emote == CONFUSED) {
-//			r.drawImage(confused, (int)(x + xmap -cwidth / 2), (int)(y + ymap));
-//		}
-//		else if(emote == SURPRISED) {
-//			r.drawImage(surprised, (int)(x + xmap -cwidth / 2), (int)(y + ymap - 30));
-//		}
+		// flinch
+		if(flinching && !knockback) {
+			if(flinchCount % 10 < 5) {
+				return;
+			}
+		}
 		// draw bullets
 		for(int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).draw(gc, r);
 		}
-					
 		
-		// flinch
-		if(flinching && !knockback) {
-			if(flinchCount % 10 < 5) return;
-		}
+		super.render(gc, r);
 	}
 
 }

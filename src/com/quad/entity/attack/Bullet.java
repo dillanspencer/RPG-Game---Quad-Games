@@ -9,6 +9,7 @@ import com.quad.entity.Animation;
 
 public class Bullet extends GameObject{
 	
+	private int damage;
 	private boolean hit;
 	private boolean remove;
 	private Image[] sprites;
@@ -23,10 +24,11 @@ public class Bullet extends GameObject{
 		if(right) dx = moveSpeed;
 		else dx = -moveSpeed;
 		
-		width = 20;
-		height = 17;
-		cwidth = 14;
-		cheight = 14;
+		width = 10;
+		height = 8;
+		cwidth = 4;
+		cheight = 8;
+		setDamage(2);
 		
 		// load sprites
 		try {
@@ -107,6 +109,12 @@ public class Bullet extends GameObject{
 	@Override
 	public void dispose() {
 		
+	}
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 
 }
