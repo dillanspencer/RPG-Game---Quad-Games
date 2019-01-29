@@ -13,7 +13,6 @@ import com.quad.core.components.State;
 import com.quad.core.fx.Light;
 import com.quad.entity.Enemy;
 import com.quad.entity.Fly;
-import com.quad.entity.Gunner;
 import com.quad.entity.InventoryItem;
 import com.quad.entity.Item;
 import com.quad.entity.Player;
@@ -22,6 +21,8 @@ import com.quad.entity.objects.Block;
 import com.quad.entity.objects.Switch;
 import com.quad.entity.objects.Teleport;
 import com.quad.entity.objects.Waterfall;
+import com.quad.entity.players.Gunner;
+import com.quad.entity.players.Wizard;
 import com.quad.hud.HUD;
 import com.quad.inventory.Axe;
 import com.quad.inventory.Potion;
@@ -32,7 +33,7 @@ public class LevelOne extends State{
 	private TileMap tm;
 	
 	//player
-	private Gunner player;
+	private Wizard player;
 	
 	//items
 	private ArrayList<Item> items;
@@ -95,7 +96,7 @@ public class LevelOne extends State{
 		spawnY = 320;
 		
 		//player
-		player = new Gunner(tm);
+		player = new Wizard(tm);
 		player.init(enemies);
 		player.setPosition(spawnX, spawnY);
 		player.getInventory().addItem(InventoryItem.potionItem);
@@ -180,6 +181,10 @@ public class LevelOne extends State{
 		
 		g = new Blob(tm, player);
 		g.setPosition(600, 300);
+		enemies.add(g);
+		
+		g = new Blob(tm, player);
+		g.setPosition(630, 300);
 		enemies.add(g);
 		
 	}
@@ -365,8 +370,17 @@ public class LevelOne extends State{
 			player.setAttacking();
 			//player.setAction(5);
 		}
-		if(gc.getInput().isKey(KeyEvent.VK_X)) {
-			player.setFiring();
+		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_RIGHT)) {
+			player.setTeleportRight(true);
+		}
+		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_LEFT)) {
+			player.setTeleportLeft(true);
+		}
+		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_UP)) {
+			player.setTeleportUp(true);
+		}
+		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_DOWN)) {
+			player.setTeleportDown(true);
 		}
 		
 		//exit
@@ -405,21 +419,21 @@ public class LevelOne extends State{
 		}
 	}
 	
-	private void reset(){
-		//clear rect
-		tb.clear();
-		
-		//reset player
-		player.setMovement(true);
-		player.setPosition(105, 320);
-		player.setEmote(Player.NONE);
-		player.setDead(false);
-		if(player.getHealth() <= 0) player.setHealth(player.getMaxHealth());
-		
-		//change event
-		eventFinish = false;
-		step[0] = 0;
-		
-	}
+//	private void reset(){
+//		//clear rect
+//		tb.clear();
+//		
+//		//reset player
+//		player.setMovement(true);
+//		player.setPosition(105, 320);
+//		player.setEmote(Player.NONE);
+//		player.setDead(false);
+//		if(player.getHealth() <= 0) player.setHealth(player.getMaxHealth());
+//		
+//		//change event
+//		eventFinish = false;
+//		step[0] = 0;
+//		
+//	}
 
 }

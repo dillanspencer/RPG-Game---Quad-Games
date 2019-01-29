@@ -8,7 +8,7 @@ import com.quad.core.Renderer;
 import com.quad.core.components.GameObject;
 import com.quad.core.fx.Image;
 import com.quad.entity.Animation;
-import com.quad.entity.GamePlayer;
+import com.quad.entity.players.GamePlayer;
 
 public class Block extends GameObject{
 	

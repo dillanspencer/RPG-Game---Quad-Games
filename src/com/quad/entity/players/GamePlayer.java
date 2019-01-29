@@ -1,4 +1,4 @@
-package com.quad.entity;
+package com.quad.entity.players;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;

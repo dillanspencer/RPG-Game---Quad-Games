@@ -5,8 +5,8 @@ import com.quad.core.Renderer;
 import com.quad.core.fx.Content;
 import com.quad.core.fx.Image;
 import com.quad.core.fx.ShadowType;
-import com.quad.entity.GamePlayer;
 import com.quad.entity.Player;
+import com.quad.entity.players.GamePlayer;
 
 public class HUD {
 	

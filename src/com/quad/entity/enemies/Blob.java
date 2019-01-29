@@ -6,9 +6,9 @@ import com.quad.core.Renderer;
 import com.quad.core.Settings;
 import com.quad.core.fx.Image;
 import com.quad.entity.Enemy;
-import com.quad.entity.GamePlayer;
-import com.quad.entity.Gunner;
 import com.quad.entity.Player;
+import com.quad.entity.players.GamePlayer;
+import com.quad.entity.players.Gunner;
 
 public class Blob extends Enemy{
 	
@@ -63,12 +63,6 @@ public class Blob extends Enemy{
 	}
 	
 	private void getNextPosition() {
-		if(knockback) {
-			dy -= fallSpeed * 2;
-			if(dy < -1) knockback = false;
-			return;
-		}
-		
 		if(left) dx = -moveSpeed;
 		else if(right) dx = moveSpeed;
 		else dx = 0;
@@ -78,6 +72,11 @@ public class Blob extends Enemy{
 		}
 		if(jumping && !falling) {
 			dy = jumpStart;
+		}
+		if(knockback) {
+			dy -= fallSpeed * 2;
+			if(dy < -1) knockback = false;
+			return;
 		}
 		
 	}

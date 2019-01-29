@@ -6,11 +6,11 @@ import com.quad.core.Renderer;
 import com.quad.core.components.GameObject;
 import com.quad.core.fx.Content;
 import com.quad.core.fx.Image;
-import com.quad.entity.GamePlayer;
-import com.quad.entity.Gunner;
 import com.quad.entity.InventoryItem;
 import com.quad.entity.Item;
 import com.quad.entity.Player;
+import com.quad.entity.players.GamePlayer;
+import com.quad.entity.players.Gunner;
 
 public class Axe extends Item{
 

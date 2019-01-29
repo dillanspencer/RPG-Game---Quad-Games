@@ -1,4 +1,4 @@
-package com.quad.entity;
+package com.quad.entity.players;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import com.quad.Tile.TileMap;
 import com.quad.core.GameContainer;
 import com.quad.core.Renderer;
 import com.quad.core.fx.Image;
+import com.quad.entity.Enemy;
 import com.quad.entity.attack.Bullet;
 
 public class Gunner extends GamePlayer{
@@ -17,7 +18,7 @@ public class Gunner extends GamePlayer{
 	// animations
 	private ArrayList<Image[]> sprites;
 	private final int[] NUMFRAMES = {
-		5, 6, 1, 1, 2
+		5, 6, 1, 1, 3
 	};
 	private final int[] FRAMEWIDTHS = {
 		16, 16, 16, 16, 16
@@ -396,7 +397,7 @@ public class Gunner extends GamePlayer{
 			animation.setNumFrames(4);
 		}
 		// Bullet
-		if(firing && animation.getFrame() >= 1) {
+		if(firing && animation.getFrame() >= 2) {
 			if(bulletCount >= bulletDelay){
 				Bullet fb = new Bullet(tileMap, facingRight);
 				fb.setPosition(x, y);

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import com.quad.core.GameContainer;
 import com.quad.core.Renderer;
 import com.quad.core.fx.Content;
-import com.quad.entity.GamePlayer;
 import com.quad.entity.InventoryItem;
 import com.quad.entity.Player;
 import com.quad.entity.SaveInfo;
+import com.quad.entity.players.GamePlayer;
 
 public class Inventory {
 	
