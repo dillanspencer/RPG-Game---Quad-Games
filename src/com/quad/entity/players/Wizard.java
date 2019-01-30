@@ -52,7 +52,7 @@ public class Wizard extends GamePlayer{
 			
 			//teleport
 			teleportCount = 0;
-			teleportDelay = 10;
+			teleportDelay = 100;
 			
 			// load sprites
 			try {
@@ -165,26 +165,30 @@ public class Wizard extends GamePlayer{
 			}
 			//teleport
 			if(teleportUp) {
-				y -= 10;
+				y -= 30*1.5;
 				falling = false;
 				dy = 0;
-				teleportCount = 0;
+				dx = 0;
 				teleportUp = false;
+				teleportCount = 0;
 			}
 			else if(teleportDown) {
-				y += 10;
-				teleportCount = 0;
+				y += 30*1.5;
+				dx = 0;
 				teleportDown = false;
+				teleportCount = 0;
 			}
 			else if(teleportLeft) {
-				x -= 10;
-				teleportCount = 0;
+				x -= 30*1.5;
+				dx = 0;
 				teleportLeft = false;
+				teleportCount = 0;
 			}
 			else if(teleportRight) {
-				x += 10;
-				teleportCount = 0;
+				x += 30*1.5;
+				dx = 0;
 				teleportRight = false;
+				teleportCount = 0;
 			}
 			
 			if(!falling) alreadyDoubleJump = false;
@@ -252,6 +256,7 @@ public class Wizard extends GamePlayer{
 			
 			//update bullets
 			//check if can fire
+			if(teleportCount > teleportDelay) teleportCount = teleportDelay;
 			if(teleportCount < teleportDelay ) {
 				teleportLeft = teleportRight = 
 				teleportUp = teleportDown = false;
@@ -420,7 +425,9 @@ public class Wizard extends GamePlayer{
 			}
 			
 			//teleport
-			if(teleportUp || teleportDown || teleportLeft || teleportRight)return;
+			if(teleportCount >= teleportDelay) {
+				if(teleportUp || teleportDown || teleportLeft || teleportRight)return;
+			}
 			
 			super.render(gc, r);
 		}

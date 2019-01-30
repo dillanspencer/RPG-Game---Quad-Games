@@ -28,7 +28,7 @@ public class Bullet extends GameObject{
 		height = 8;
 		cwidth = 4;
 		cheight = 8;
-		setDamage(2);
+		damage = 2;
 		
 		// load sprites
 		try {

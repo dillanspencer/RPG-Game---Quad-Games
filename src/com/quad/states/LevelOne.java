@@ -33,7 +33,7 @@ public class LevelOne extends State{
 	private TileMap tm;
 	
 	//player
-	private Wizard player;
+	private Gunner player;
 	
 	//items
 	private ArrayList<Item> items;
@@ -96,7 +96,7 @@ public class LevelOne extends State{
 		spawnY = 320;
 		
 		//player
-		player = new Wizard(tm);
+		player = new Gunner(tm);
 		player.init(enemies);
 		player.setPosition(spawnX, spawnY);
 		player.getInventory().addItem(InventoryItem.potionItem);
@@ -370,18 +370,21 @@ public class LevelOne extends State{
 			player.setAttacking();
 			//player.setAction(5);
 		}
-		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_RIGHT)) {
-			player.setTeleportRight(true);
+		if(gc.getInput().isKey(KeyEvent.VK_X)) {
+			player.setFiring();
 		}
-		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_LEFT)) {
-			player.setTeleportLeft(true);
-		}
-		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_UP)) {
-			player.setTeleportUp(true);
-		}
-		if(gc.getInput().isKey(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_DOWN)) {
-			player.setTeleportDown(true);
-		}
+//		if(gc.getInput().isKeyPressed(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_RIGHT)) {
+//			player.setTeleportRight(true);
+//		}
+//		if(gc.getInput().isKeyPressed(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_LEFT)) {
+//			player.setTeleportLeft(true);
+//		}
+//		if(gc.getInput().isKeyPressed(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_UP)) {
+//			player.setTeleportUp(true);
+//		}
+//		if(gc.getInput().isKeyPressed(KeyEvent.VK_X) && gc.getInput().isKey(KeyEvent.VK_DOWN)) {
+//			player.setTeleportDown(true);
+//		}
 		
 		//exit
 		if(gc.getInput().isKeyPressed(KeyEvent.VK_ESCAPE)) System.exit(0);
