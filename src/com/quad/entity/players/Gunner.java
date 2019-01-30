@@ -55,6 +55,10 @@ public class Gunner extends GamePlayer{
 		bulletDelay = 10;
 		bullets = new ArrayList<Bullet>();
 		
+		level = 1;
+		exp = 0;
+		maxExp = 1000;
+		
 		// load sprites
 		try {
 			
@@ -238,6 +242,12 @@ public class Gunner extends GamePlayer{
 		
 		//-----------------------------------------
 		
+		//check if level up
+		if(exp >= maxExp) {
+			exp = (exp - maxExp);
+			level += 1;
+			maxExp = level * (1000);
+		}
 		
 		// check attack finished
 		if(currentAction == ATTACKING ||
@@ -402,7 +412,6 @@ public class Gunner extends GamePlayer{
 				Bullet fb = new Bullet(tileMap, facingRight);
 				fb.setPosition(x, y);
 				bullets.add(fb);
-				System.out.println(bullets.size());
 			}
 			bulletCount = 0;
 		}

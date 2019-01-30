@@ -1,9 +1,12 @@
 package com.quad.entity.enemies;
 
+import java.util.Random;
+
 import com.quad.Tile.TileMap;
 import com.quad.core.GameContainer;
 import com.quad.core.Renderer;
 import com.quad.core.Settings;
+import com.quad.core.fx.Font;
 import com.quad.core.fx.Image;
 import com.quad.entity.Enemy;
 import com.quad.entity.Player;
@@ -27,6 +30,9 @@ public class Blob extends Enemy{
 		height = 12;
 		cwidth = 12;
 		cheight = 12;
+		
+		level = new Random().nextInt((4 - 2) + 1) + 2;
+		exp = 100 * (level * 1.5);
 		
 		damage = 1;
 		moveSpeed = 0.8;
@@ -135,7 +141,7 @@ public class Blob extends Enemy{
 		if(flinching && !knockback) {
 			if(flinchCount % 10 < 5) return;
 		}
-		
+		r.drawString("LV: "+level, 0xffffff, (int)(x + xmap - width / 2), (int)(y + ymap - height));
 		
 		super.renderComponents(gc, r);
 		

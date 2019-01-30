@@ -22,7 +22,6 @@ import com.quad.entity.objects.Switch;
 import com.quad.entity.objects.Teleport;
 import com.quad.entity.objects.Waterfall;
 import com.quad.entity.players.Gunner;
-import com.quad.entity.players.Wizard;
 import com.quad.hud.HUD;
 import com.quad.inventory.Axe;
 import com.quad.inventory.Potion;
@@ -250,6 +249,7 @@ public class LevelOne extends State{
 			e.update(gc, dt);
 			if(e.shouldRemove()){
 				enemies.remove(i);
+				player.addExp(e.getExp());
 				i--;
 			}
 		}

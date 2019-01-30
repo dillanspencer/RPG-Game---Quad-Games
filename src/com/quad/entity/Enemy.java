@@ -16,6 +16,8 @@ public class Enemy extends GameObject {
 	protected int damage;
 	protected boolean remove;
 	protected boolean knockback;
+	protected double exp;
+	protected int level;
 	
 	protected boolean flinching;
 	protected long flinchCount;
@@ -39,6 +41,23 @@ public class Enemy extends GameObject {
 	public int getHealth(){return health;}
 	public int getMaxHealth(){return maxHealth;}
 	
+	
+	public double getExp() {
+		return exp;
+	}
+
+	public void setExp(double exp) {
+		this.exp = exp;
+	}
+
+	public int isLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 	public void hit(int damage) {
 		if(dead || flinching) return;
 		health -= damage;
@@ -49,7 +68,7 @@ public class Enemy extends GameObject {
 		flinching = true;
 		flinchCount = 0;
 	}
-		
+	
 
 	
 	public void update(GameContainer gc, float dt) {

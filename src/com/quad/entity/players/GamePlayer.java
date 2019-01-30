@@ -153,6 +153,36 @@ public class GamePlayer extends GameObject{
 		stop();
 	}
 	
+	
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public double getExp() {
+		return exp;
+	}
+	
+	public void addExp(double exp) {
+		this.exp += exp;
+	}
+
+	public void setExp(double exp) {
+		this.exp = exp;
+	}
+
+	public double getMaxExp() {
+		return maxExp;
+	}
+
+	public void setMaxExp(double maxExp) {
+		this.maxExp = maxExp;
+	}
+
 	public String getTimeToString() {
 		int minutes = (int) (time / 3600);
 		int seconds = (int) ((time % 3600) / 60);

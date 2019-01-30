@@ -2,8 +2,8 @@ package com.quad.core;
 
 public class Settings {
 	
-	public static final int WIDTH = 800/4;
-	public static final int HEIGHT = 600/4;
+	public static final int WIDTH = 1080/4;
+	public static final int HEIGHT = 720/4;
 	public static final int SCALE = 4;	
 	
 	public static final int FPS = 60;
