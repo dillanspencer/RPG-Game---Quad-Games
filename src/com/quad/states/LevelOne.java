@@ -45,6 +45,7 @@ public class LevelOne extends State{
 	
 	//enemies
 	private ArrayList<Enemy> enemies;
+	private ArrayList<Enemy> dead;
 	
 	//blackout screen
 	private ArrayList<Rectangle> tb;
@@ -66,6 +67,10 @@ public class LevelOne extends State{
 	private int spawnX;
 	private int spawnY;
 	
+	//enemy re-loader
+	private int respawnCount;
+	private int maxRespawn;
+	
 	//events
 	private int step[];
 	private boolean eventFinish;
@@ -84,6 +89,7 @@ public class LevelOne extends State{
 		
 		//enemies
 		enemies = new ArrayList<Enemy>();
+		dead = new ArrayList<Enemy>();
 		
 		//waterfall
 		fall = new Waterfall(tm);
@@ -130,6 +136,9 @@ public class LevelOne extends State{
 		
 		b = new Block(tm, player);
 		b.init();
+		
+		respawnCount = 0;
+		maxRespawn = 100;
 		
 		step = new int[5];
 		 
@@ -204,7 +213,6 @@ public class LevelOne extends State{
 
 	@Override
 	public void update(GameContainer gc, float dt) {
-		//update map
 		
 		//use mouse mode---------------------------------------------
 		if(mouseMode)
@@ -234,6 +242,10 @@ public class LevelOne extends State{
 		if(eventFinish) eventFinish();
 		if(eventComplete) eventComplete(gc);
 		
+		//update respawn
+		respawnCount++;
+		if(respawnCount > maxRespawn) respawn();
+		
 		//player update
 		player.update(gc, dt);
 		
@@ -249,6 +261,7 @@ public class LevelOne extends State{
 			e.update(gc, dt);
 			if(e.shouldRemove()){
 				enemies.remove(i);
+				dead.add(e);
 				player.addExp(e.getExp());
 				i--;
 			}
@@ -357,6 +370,17 @@ public class LevelOne extends State{
 	@Override
 	public void dipose() {
 		
+	}
+	
+	private void respawn() {
+		if(dead.size() < 1) return;
+		for(int i = 0; i < dead.size(); i++) {
+			Enemy e = dead.get(i);
+			enemies.add(e);
+			dead.remove(i);
+			respawnCount = 0;
+			i--;
+		}
 	}
 	
 	private void input(GameContainer gc){

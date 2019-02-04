@@ -25,6 +25,12 @@ public class HUD {
 		for(int i = 0; i < p.getHealth(); i++){
 			r.drawImage(heart, 10 +i * 10, 5);
 		}
+		
+		//render level
+		r.drawString("Level: " + p.getLevel(), 0xffffff, 10, 20);
+		
+		//render exp
+		r.drawString("Exp: " + p.getExp() + " / " + p.getMaxExp(), 0xffffff, 10, 30);
 	}
 
 }

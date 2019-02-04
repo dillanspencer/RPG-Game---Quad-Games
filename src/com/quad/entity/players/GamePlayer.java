@@ -10,7 +10,7 @@ import com.quad.core.components.GameObject;
 import com.quad.core.fx.Image;
 import com.quad.inventory.Inventory;
 
-public class GamePlayer extends GameObject{
+public abstract class GamePlayer extends GameObject{
 	
 	// player stuff
 	protected int lives;
