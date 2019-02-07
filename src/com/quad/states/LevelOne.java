@@ -138,7 +138,7 @@ public class LevelOne extends State{
 		b.init();
 		
 		respawnCount = 0;
-		maxRespawn = 100;
+		maxRespawn = 500;
 		
 		step = new int[5];
 		 
@@ -376,6 +376,7 @@ public class LevelOne extends State{
 		if(dead.size() < 1) return;
 		for(int i = 0; i < dead.size(); i++) {
 			Enemy e = dead.get(i);
+			e.respawn();
 			enemies.add(e);
 			dead.remove(i);
 			respawnCount = 0;
@@ -392,7 +393,7 @@ public class LevelOne extends State{
 		player.setJumping(gc.getInput().isKeyPressed(KeyEvent.VK_UP));
 		if(gc.getInput().isKeyPressed(KeyEvent.VK_Z)){
 			player.setAttacking();
-			//player.setAction(5);
+			player.setAction(5);
 		}
 		if(gc.getInput().isKey(KeyEvent.VK_X)) {
 			player.setFiring();

@@ -69,7 +69,13 @@ public class Enemy extends GameObject {
 		flinchCount = 0;
 	}
 	
-
+	public void respawn() {
+		dead = false;
+		remove = false;
+		health = maxHealth;
+		knockback = false;
+		flinchCount = 0;
+	}
 	
 	public void update(GameContainer gc, float dt) {
 		super.updateComponents(gc, dt);

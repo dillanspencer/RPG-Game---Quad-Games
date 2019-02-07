@@ -192,6 +192,19 @@ public class Gunner extends GamePlayer{
 		this.enemies = enemies;
 	}
 	
+	public void setAction(int tile){
+		if(inventory.hasItem("Axe")){
+			if(facingRight && tileMap.getIndex(rowTile, colTile + 1) == 24){
+				tileMap.setTile(rowTile, colTile + 1, tile);
+				inventory.removeItem("Axe");
+			}
+			if(!facingRight && tileMap.getIndex(rowTile, colTile - 1) == 24) {
+				tileMap.setTile(rowTile, colTile - 1, tile);
+				inventory.removeItem("Axe");
+			}
+		}
+	}
+	
 	public void update(GameContainer gc, float dt) {
 		super.update(gc, dt);
 		
